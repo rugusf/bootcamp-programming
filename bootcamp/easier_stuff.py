@@ -15,6 +15,9 @@
 import os # a built-in module, for dealing with filenames
 from . import app # this is part of the website guts
 
+import csv
+
+
 
 
 # These are all the files you have to work with. Go open them in a text editor so you can
@@ -42,6 +45,23 @@ EXPERIMENT_FILE = os.path.join(app.root_path, 'data', 'experiment_data.txt')
 #       [('YAL001C', -0.58), ('YAL002W', 0.23), ('YAL003W', -0.25), ... ],
 #        ... ]
 def experiment():
+	txt = open(EXPERIMENT_FILE)
+	data = csv.reader(txt, delimiter = '\t')
+	
+	datalist = []
+	for row in data:
+		datalist.append[row]
+	numrows = len(datalist)
+	numcols = len(datalist[1])
+	
+	maplist = []
+	for col in range(0, numcols):
+		for row in range(0, numrows):
+			maplist[.append
+	
+	txt.close()
+	
+	
     pass
 
 
