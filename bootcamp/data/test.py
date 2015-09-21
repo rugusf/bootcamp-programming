@@ -22,7 +22,7 @@ def experiment():
 			explist.append(pair)
 		maplist.append(explist)
 	
-	print maplist[0]
+	print maplist
 	print '-' * 100
 	txt.close()
 

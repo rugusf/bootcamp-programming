@@ -63,14 +63,26 @@ def experiment():
 		maplist.append(explist)
 	
 	txt.close()
-	
-	
-    pass
 
 
 # map from a gene's systematic name to its standard name
 # e.g. gene_name('YGR188C') returns 'BUB1'
 def gene_name(gene):
+	txt = open(GENE_INFO)
+	data = csv.reader(txt, delimiter = '\t')
+	
+	datalist = []
+	for row in data:
+		datalist.append(row)
+	numrows = len(datalist)
+	
+	genelist = []
+	for row in range(1, numrows):
+		pair = [datalist[row][0], datalist[row][1]]
+		genelist.append(pair)
+	
+	
+	txt.close()
     pass
 
 
