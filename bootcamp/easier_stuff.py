@@ -55,8 +55,8 @@ def experiment():
 	numcols = len(datalist[1])
 	
 	maplist = []
-	explist = []
 	for col in range(1, numcols):
+		explist = []
 		for row in range(1, numrows):
 			pair = [datalist[row][0], datalist[row][col]]
 			explist.append(pair)
