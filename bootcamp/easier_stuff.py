@@ -81,6 +81,9 @@ def gene_name(gene):
 		pair = [datalist[row][0], datalist[row][1]]
 		genelist.append(pair)
 	
+	for i in range(0, numrows - 1):
+		if gene == genelist[i][0]:
+			return genelist[i][1]
 	
 	txt.close()
     pass
