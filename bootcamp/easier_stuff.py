@@ -93,7 +93,18 @@ def gene_name(gene):
 # across all of the experiments.
 # e.g. gene_data('YGR188C') returns [-0.09, 0.2, -0.07, ... ]
 def gene_data(gene):
-    pass
+    txt = open(EXPERIMENT_FILE)
+	data = csv.reader(txt, delimiter = '\t')
+	
+	datalist = []
+	for row in data:
+		datalist.append(row)
+	numrows = len(datalist)
+	
+	for i in range(0, numrows):
+		if gene == datalist[i][0]:
+			datavals = datalist[i]
+			return datavals[1:]
 
 
 # map from a systematic name to some info about the gene (whatever you want),

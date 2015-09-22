@@ -27,3 +27,5 @@ def gene_name(gene):
 
 print gene_name("YBR066C")
 print "should be NRG2"
+print gene_name("YCR093W")
+
