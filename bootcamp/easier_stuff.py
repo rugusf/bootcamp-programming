@@ -126,13 +126,26 @@ def gene_info(gene):
 			
 	txt.close()
 
-    pass
-
 
 # map from a systematic name to a list of GOIDs that the gene is associated with
 # e.g. 'YGR188C' -> ['GO:0005694', 'GO:0000775', 'GO:0000778', ... ]
 def gene_to_go(gene):
-    pass
+	txt = open(GO_MEMBERSHIP)
+	data = csv.reader(txt, delimiter = '\t')
+	
+	datalist = []
+	for row in data:
+		datalist.append(row)
+	numrows = len(datalist)
+	
+	goids = []
+	for i in range(0, numrows):
+		if gene == datalist[i][0]:
+			goids.append(datalist[i][1])
+	
+	return goids
+	
+	txt.close()
 
 
 # map from one of the GO aspects (P, F, and C, for Process, Function, Component),
