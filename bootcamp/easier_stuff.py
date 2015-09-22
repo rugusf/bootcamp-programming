@@ -181,11 +181,24 @@ def go_aspect(aspect):
 	txt.close()
 
 
+
 # map from a GOID (e.g. GO:0005737) to a *tuple* of the term, aspect, and term definition
 # e.g. 'GO:0005737' -> ('cytoplasm', 'C', 'All of the contents of a cell... (etc)'
 def go_info(goid):
-    pass
+	txt = open(GO_INFO)
+	data = csv.reader(txt, delimiter = '\t')
+	
+	datalist = []
+	for row in data:
+		datalist.append(row)
+	numrows = len(datalist)
 
+	for i in range(0, numrows):
+		if goid == datalist[i][0]:
+			goidinfo = datalist[i]
+			return goidinfo[1:]
+			
+	txt.close()
 
 # the reverse of the gene_to_go function: map from a GOID
 # to a list of genes (systematic names)
