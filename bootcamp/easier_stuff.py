@@ -86,14 +86,13 @@ def gene_name(gene):
 			return genelist[i][1]
 	
 	txt.close()
-    pass
 
 
 # map from a gene's systematic name to a list of the values for that gene,
 # across all of the experiments.
 # e.g. gene_data('YGR188C') returns [-0.09, 0.2, -0.07, ... ]
 def gene_data(gene):
-    txt = open(EXPERIMENT_FILE)
+	txt = open(EXPERIMENT_FILE)
 	data = csv.reader(txt, delimiter = '\t')
 	
 	datalist = []
@@ -105,11 +104,32 @@ def gene_data(gene):
 		if gene == datalist[i][0]:
 			datavals = datalist[i]
 			return datavals[1:]
+			
+	txt.close()
 
 
 # map from a systematic name to some info about the gene (whatever you want),
 # e.g  'YGR188C' -> 'Protein kinase involved in the cell cycle checkpoint into anaphase'
 def gene_info(gene):
+	txt = open(GENE_INFO)
+	data = csv.reader(txt, delimiter = '\t')
+	
+	datalist = []
+	for row in data:
+		datalist.append(row)
+	numrows = len(datalist)
+	
+	genelist = []
+	for row in range(1, numrows):
+		pair = [datalist[row][0], datalist[row][1]]
+		genelist.append(pair)
+	
+	for i in range(0, numrows - 1):
+		if gene == genelist[i][0]:
+			return genelist[i][1]
+	
+	txt.close()
+
     pass
 
 
