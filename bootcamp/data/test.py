@@ -3,9 +3,10 @@ import os # a built-in module, for dealing with filenames
 import csv
 
 EXPERIMENT_FILE = "experiment_data.txt"
+GENE_INFO = "gene_info.txt"
 
-def gene_data(gene):
-	txt = open(EXPERIMENT_FILE)
+def gene_info(gene):
+	txt = open(GENE_INFO)
 	data = csv.reader(txt, delimiter = '\t')
 	
 	datalist = []
@@ -15,8 +16,10 @@ def gene_data(gene):
 	
 	for i in range(0, numrows):
 		if gene == datalist[i][0]:
-			datavals = datalist[i]
-			return datavals[1:]
+			geneinfo = datalist[i]
+			return geneinfo[2:]
 			
-print gene_data("YAL001C")
+	txt.close()
+			
+print gene_info("YAL001C")
 
