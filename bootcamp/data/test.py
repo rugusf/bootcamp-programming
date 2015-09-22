@@ -2,10 +2,10 @@ import os # a built-in module, for dealing with filenames
 #from . import app # this is part of the website guts
 import csv
 
-GENE_INFO = "gene_info.txt"
+EXPERIMENT_FILE = "experiment_data.txt"
 
-def gene_name(gene):
-	txt = open(GENE_INFO)
+def gene_data(gene):
+	txt = open(EXPERIMENT_FILE)
 	data = csv.reader(txt, delimiter = '\t')
 	
 	datalist = []
@@ -13,19 +13,10 @@ def gene_name(gene):
 		datalist.append(row)
 	numrows = len(datalist)
 	
-	genelist = []
-	for row in range(1, numrows):
-		pair = [datalist[row][0], datalist[row][1]]
-		genelist.append(pair)
-	
-	for i in range(0, numrows - 1):
-		if gene == genelist[i][0]:
-			return genelist[i][1]
-	
-	txt.close()
-
-
-print gene_name("YBR066C")
-print "should be NRG2"
-print gene_name("YCR093W")
+	for i in range(0, numrows):
+		if gene == datalist[i][0]:
+			datavals = datalist[i]
+			return datavals[1:]
+			
+print gene_data("YAL001C")
 
