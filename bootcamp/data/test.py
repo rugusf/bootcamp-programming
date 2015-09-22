@@ -7,8 +7,8 @@ GENE_INFO = "gene_info.txt"
 GO_INFO = "go_info.txt"
 GO_MEMBERSHIP = "go_membership.txt"
 
-def gene_to_go(gene):
-	txt = open(GO_MEMBERSHIP)
+def go_aspect(aspect):
+	txt = open(GO_INFO)
 	data = csv.reader(txt, delimiter = '\t')
 	
 	datalist = []
@@ -16,14 +16,24 @@ def gene_to_go(gene):
 		datalist.append(row)
 	numrows = len(datalist)
 	
-	goids = []
+	gop = []
+	gof = []
+	goc = []
 	for i in range(0, numrows):
-		if gene == datalist[i][0]:
-			goids.append(datalist[i][1])
+		if datalist[i][2] == 'P':
+			gop.append(datalist[i][0])
+		elif datalist[i][2] == 'F':
+			gof.append(datalist[i][0])
+		elif datalist[i][2] == 'C':
+			goc.append(datalist[i][0])
 	
-	return goids
-	
+	if aspect == 'F':
+		return gof
+	elif aspect == 'P':
+		return gop
+	elif aspect == 'C':
+		return goc
+		
 	txt.close()
-			
-print gene_to_go("YAL001C")
 
+print go_aspect('P')

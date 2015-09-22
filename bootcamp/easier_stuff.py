@@ -152,7 +152,33 @@ def gene_to_go(gene):
 # to a list of all the GOIDs in that aspect
 # e.g. 'C' -> ['GO:0005737', 'GO:0005761', 'GO:0005763', ... ]
 def go_aspect(aspect):
-    pass
+	txt = open(GO_INFO)
+	data = csv.reader(txt, delimiter = '\t')
+	
+	datalist = []
+	for row in data:
+		datalist.append(row)
+	numrows = len(datalist)
+	
+	gop = []
+	gof = []
+	goc = []
+	for i in range(0, numrows):
+		if datalist[i][2] == 'P':
+			gop.append(datalist[i][0])
+		elif datalist[i][2] == 'F':
+			gof.append(datalist[i][0])
+		elif datalist[i][2] == 'C':
+			goc.append(datalist[i][0])
+	
+	if aspect == 'F':
+		return gof
+	elif aspect == 'P':
+		return gop
+	elif aspect == 'C':
+		return goc
+		
+	txt.close()
 
 
 # map from a GOID (e.g. GO:0005737) to a *tuple* of the term, aspect, and term definition
