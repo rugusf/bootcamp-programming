@@ -7,7 +7,7 @@ GENE_INFO = "gene_info.txt"
 GO_INFO = "go_info.txt"
 GO_MEMBERSHIP = "go_membership.txt"
 
-def go_aspect(aspect):
+def go_info(goid):
 	txt = open(GO_INFO)
 	data = csv.reader(txt, delimiter = '\t')
 	
@@ -15,25 +15,13 @@ def go_aspect(aspect):
 	for row in data:
 		datalist.append(row)
 	numrows = len(datalist)
-	
-	gop = []
-	gof = []
-	goc = []
-	for i in range(0, numrows):
-		if datalist[i][2] == 'P':
-			gop.append(datalist[i][0])
-		elif datalist[i][2] == 'F':
-			gof.append(datalist[i][0])
-		elif datalist[i][2] == 'C':
-			goc.append(datalist[i][0])
-	
-	if aspect == 'F':
-		return gof
-	elif aspect == 'P':
-		return gop
-	elif aspect == 'C':
-		return goc
-		
-	txt.close()
 
-print go_aspect('P')
+	for i in range(0, numrows):
+		if goid == datalist[i][0]:
+			goidinfo = datalist[i]
+			return goidinfo[1:]
+			
+	txt.close()
+	
+	
+print go_info("GO:0000015")
