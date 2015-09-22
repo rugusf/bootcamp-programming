@@ -204,4 +204,19 @@ def go_info(goid):
 # to a list of genes (systematic names)
 # e.g. 'GO:0005737' -> ['YAL001C', 'YAL002W', 'YAL003W', ... ]
 def go_to_gene(goid):
-    pass
+    txt = open(GO_MEMBERSHIP)
+	data = csv.reader(txt, delimiter = '\t')
+	
+	datalist = []
+	for row in data:
+		datalist.append(row)
+	numrows = len(datalist)
+	
+	gene_name = []
+	for i in range(0, numrows):
+		if goid == datalist[i][1]:
+			gene_name.append(datalist[i][0])
+	
+	return gene_name
+	
+	txt.close()
