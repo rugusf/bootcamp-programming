@@ -119,15 +119,11 @@ def gene_info(gene):
 		datalist.append(row)
 	numrows = len(datalist)
 	
-	genelist = []
-	for row in range(1, numrows):
-		pair = [datalist[row][0], datalist[row][1]]
-		genelist.append(pair)
-	
-	for i in range(0, numrows - 1):
-		if gene == genelist[i][0]:
-			return genelist[i][1]
-	
+	for i in range(0, numrows):
+		if gene == datalist[i][0]:
+			geneinfo = datalist[i]
+			return geneinfo[2:]
+			
 	txt.close()
 
     pass
